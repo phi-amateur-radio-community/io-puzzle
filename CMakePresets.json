@@ -1,0 +1,11 @@
+{
+  "version": 6,
+  "configurePresets": [
+    {
+      "name": "default",
+      "hidden": false,
+      "generator": "Ninja",
+      "binaryDir": "&{sourceDir}/build/${presetName}"
+    }
+  ]
+}
