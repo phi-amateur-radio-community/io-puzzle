@@ -5,7 +5,7 @@
       "name": "default",
       "hidden": false,
       "generator": "Ninja",
-      "binaryDir": "&{sourceDir}/build/${presetName}"
+      "binaryDir": "${sourceDir}/build/${presetName}"
     }
   ]
 }
