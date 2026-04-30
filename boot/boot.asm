@@ -13,18 +13,28 @@ GLOBAL _start
 
 start:
 
-    cli                         ; Close the BIOS INT
+    cli                         ; Close the BIOS interrupts
 
-fast_a20:                       ; Open A20
+fast_a20:                       ; Open A20 line
     mov al, BOOT_A20
     or  al, 0x02
     out BOOT_A20, al
+
+
+; ==========================================================
+; Gobal Descriptor Table ( GDT )
+; ==========================================================
+
+    dq 0                        ; Entry 0 ( NULL )
+    dq GDT_KERNEL_CODE          ; Entry 1 ( Kernel code segment )
+    dq GDT_KERNEL_DATA          ; Entry 2 ( Kernel data segment )
+
 
     times 446 - ($ - $$) db 0   ; Fill in the empty space
 
 
 ; ==========================================================
-; Partition table
+; Partition Table
 ; ==========================================================
 
 partition_table:
