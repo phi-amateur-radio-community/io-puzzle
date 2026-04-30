@@ -11,19 +11,17 @@ ORG BOOT_ORG
 
 GLOBAL _start
 
-SECTION .text
 start:
 
     ; TODO: Boot Loader.
 
-    time 446 - ($ - $$) db 0    ; Fill in the empty space
+    times 446 - ($ - $$) db 0   ; Fill in the empty space
 
 
 ; ==========================================================
 ; Partition table
 ; ==========================================================
 
-SECTION .mbr
 partition_table:
 
     ; Entry 0 (1 ~ 2047):
@@ -43,8 +41,7 @@ partition_table:
     dd 0x00000000               ; Sector count (Patch by core)
 
     ; Entry 2 ~ 3 (Null):
-    time 32 db 0                ; Fill in the empty space
+    times 32 db 0               ; Fill in the empty space
 
 
-SECTION .boot_sig
-    dw BOOT_SIGNATURE       ; MBR Boot Signature
+    dw BOOT_SIGNATURE           ; MBR Boot Signature
