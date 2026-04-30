@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+bochs -f "@CMAKE_CURRENT_SOURCE_DIR@/bochsrc"

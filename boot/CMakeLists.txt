@@ -11,4 +11,6 @@ add_custom_command(
             ${CMAKE_CURRENT_SOURCE_DIR}/include/boot.inc
 )
 
-add_custom_target(boot ALL DEPENDS disk.img)
+add_custom_target(Boot ALL DEPENDS disk.img)
+
+configure_file(run.in ${CMAKE_BINARY_DIR}/run.sh @ONLY)
