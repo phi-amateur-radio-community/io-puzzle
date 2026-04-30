@@ -3,3 +3,6 @@ cmake-build-*
 
 # CLion
 .idea
+
+# CMake
+CMakeUserPresets.json
