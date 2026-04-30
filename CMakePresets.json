@@ -7,7 +7,8 @@
       "generator": "Ninja",
       "binaryDir": "${sourceDir}/build/${presetName}",
       "environment": {
-        "IMG_SIZE": "128"
+        "IMG_SIZE": "128",
+        "DISK_CYLINDERS": "1"
       }
     }
   ]

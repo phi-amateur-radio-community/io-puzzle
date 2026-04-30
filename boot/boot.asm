@@ -13,7 +13,12 @@ GLOBAL _start
 
 start:
 
-    ; TODO: Boot Loader.
+    cli                         ; Close the BIOS INT
+
+fast_a20:                       ; Open A20
+    mov al, BOOT_A20
+    or  al, 0x02
+    out BOOT_A20, al
 
     times 446 - ($ - $$) db 0   ; Fill in the empty space
 

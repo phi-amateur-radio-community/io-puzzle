@@ -2,7 +2,8 @@ add_custom_command(
         OUTPUT
             boot.bin
             disk.img
-        COMMAND env
+        COMMAND
+            ${CMAKE_COMMAND} -E env
             IMG_SIZE=$ENV{IMG_SIZE}
             CURRENT_DIR=${CMAKE_CURRENT_SOURCE_DIR}
             bash ${CMAKE_CURRENT_SOURCE_DIR}/build.sh
@@ -13,4 +14,4 @@ add_custom_command(
 
 add_custom_target(Boot ALL DEPENDS disk.img)
 
-configure_file(run.in ${CMAKE_BINARY_DIR}/run.sh @ONLY)
+configure_file(bochsrc.in ${CMAKE_BINARY_DIR}/bochsrc @ONLY)

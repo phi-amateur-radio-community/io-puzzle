@@ -11,7 +11,7 @@
 
 BOOT_ORG            EQU 0x7C00
 BOOT_SIGNATURE      EQU 0xAA55
-
+BOOT_A20            EQU 0x92
 
 ; ==========================================================
 ; Partition Table
