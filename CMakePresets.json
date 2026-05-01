@@ -6,9 +6,8 @@
       "hidden": false,
       "generator": "Ninja",
       "binaryDir": "${sourceDir}/build/${presetName}",
-      "environment": {
-        "IMG_SIZE": "128",
-        "DISK_CYLINDERS": "1"
+      "cacheVariables": {
+        "IMG_SIZE": "1008"
       }
     }
   ]

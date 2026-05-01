@@ -4,7 +4,7 @@ add_custom_command(
             disk.img
         COMMAND
             ${CMAKE_COMMAND} -E env
-            IMG_SIZE=$ENV{IMG_SIZE}
+            IMG_SIZE=${IMG_SIZE}
             CURRENT_DIR=${CMAKE_CURRENT_SOURCE_DIR}
             bash ${CMAKE_CURRENT_SOURCE_DIR}/build.sh
         DEPENDS
