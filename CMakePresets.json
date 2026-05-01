@@ -7,7 +7,7 @@
       "generator": "Ninja",
       "binaryDir": "${sourceDir}/build/${presetName}",
       "cacheVariables": {
-        "IMG_SIZE": "1008"
+        "IMG_SIZE": "128"
       }
     }
   ]

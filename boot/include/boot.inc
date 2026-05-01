@@ -29,3 +29,10 @@ GDT_KERNEL_DATA     EQU 0x00CF92000000FFFF
 PT_BOOT             EQU 0x00
 PT_TYPE_FAT32_LBA   EQU 0x0C
 PT_TYPE_CUST        EQU 0xDA
+
+
+; ==========================================================
+; Macro Definition
+; ==========================================================
+
+%define EMPTY_SIZE  512 - ($ - $$) - (end - tail)
