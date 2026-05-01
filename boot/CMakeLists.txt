@@ -1,6 +1,7 @@
 add_custom_command(
         OUTPUT
             boot.bin
+            kernel.bin
             disk.img
         COMMAND
             ${CMAKE_COMMAND} -E env
