@@ -12,7 +12,6 @@ ORG BOOT_ORG
 GLOBAL _start
 
 start:
-
     cli                         ; Close the BIOS interrupts
 
 fast_a20:                       ; Open A20 line
@@ -20,14 +19,40 @@ fast_a20:                       ; Open A20 line
     or  al, 0x02
     out BOOT_A20, al
 
+load_gdt:
+    lgdt [gdt_ptr]              ; Load GDT
+
+protection_enable:
+    mov eax, cr0
+    or  eax, 1
+    mov cr0, eax                ; Open protection mode
+
+far_jump:
+    jmp 0x08:protection         ; Change to 32-bits mode
+
+
+; ==========================================================
+; Protection Mode Enable
+; ==========================================================
+
+BITS 32
+
+protection:
+
 
 ; ==========================================================
 ; Gobal Descriptor Table ( GDT )
 ; ==========================================================
 
+gdt_start:
     dq 0                        ; Entry 0 ( NULL )
     dq GDT_KERNEL_CODE          ; Entry 1 ( Kernel code segment )
     dq GDT_KERNEL_DATA          ; Entry 2 ( Kernel data segment )
+gdt_end:
+
+gdt_ptr:
+    dw gdt_end - gdt_start - 1
+    dd gdt_start
 
 
     times 446 - ($ - $$) db 0   ; Fill in the empty space
