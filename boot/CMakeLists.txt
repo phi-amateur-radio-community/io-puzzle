@@ -23,3 +23,4 @@ if(NOT DEFINED BOCHS_SHARE_PATH)
 endif ()
 
 configure_file(tools/bochsrc.in ${CMAKE_BINARY_DIR}/bochsrc @ONLY)
+configure_file(tools/run.in ${CMAKE_BINARY_DIR}/run.sh @ONLY)

@@ -3,4 +3,5 @@ ata0: enabled=1, ioaddr1=0x1f0, ioaddr2=0x3f0, irq=14
 ata0-master: type=disk, path="boot/disk.img", mode=flat
 boot: disk
 log: bochs.log
-romimage: @BOCHS_SHARE_PATH@/BIOS-bochs-latest
+romimage: file=@BOCHS_SHARE_PATH@/BIOS-bochs-latest
+debug: action=ignore, harddrv=report
