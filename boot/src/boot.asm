@@ -84,6 +84,11 @@ read_disk:
 
     mov  ebx, KERNEL_SIZE       ; Set the sector counter
 
+    mov  eax, 0x10              ; Set the ES to the kernel data segment
+    mov  es, eax
+
+    mov  edi, BOOT_KERNEL_POS   ; Set the kernel loading position
+
     mov  dx, PIO_AS             ; Delay 400ns
     in   al, dx                 ; Read alternate status
     in   al, dx
@@ -102,11 +107,6 @@ wait_drq:                       ; Check whenever the data is ready
 read_sector:
     mov  ecx, 0x00000100        ; Set simply sector length
     mov  edx, PIO_DATA          ; Connect the output port
-
-    mov  eax, 0x10              ; Set the ES to the kernel data segment
-    mov  es, eax
-
-    mov  edi, BOOT_KERNEL_POS   ; Set the kernel loading position
 
     rep  insw                   ; Read to the memory from disk
 
