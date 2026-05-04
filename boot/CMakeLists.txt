@@ -23,6 +23,7 @@ if(NOT DEFINED BOCHS_SHARE_PATH)
             And you can used CMakeUserPresets.json to set it.")
 endif ()
 
+configure_file(linker.ld.in ${CMAKE_BINARY_DIR}/linker.ld @ONLY)
 configure_file(include/boot.inc.in ${CMAKE_BINARY_DIR}/include/boot.inc @ONLY)
 configure_file(tools/bochsrc.in ${CMAKE_BINARY_DIR}/bochsrc @ONLY)
 configure_file(tools/run.sh ${CMAKE_BINARY_DIR}/run.sh COPYONLY)
