@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# Path /boot/tools/build.sh
+# Build tool.
+
 set -euo pipefail
 
 # Check disk

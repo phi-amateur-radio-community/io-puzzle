@@ -3,6 +3,8 @@
 ; Licensed under the GNU General Public License v3.0
 ; https://github.com/phi-amateur-radio-community/io-puzzle
 ; ======================================================================
+; Path /boot/src/boot.asm
+; Boot loader.
 
 %INCLUDE "boot.inc"             ; Magic number header file
 

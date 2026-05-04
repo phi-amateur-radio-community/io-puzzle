@@ -3,6 +3,8 @@
 ; Licensed under the GNU General Public License v3.0
 ; https://github.com/phi-amateur-radio-community/io-puzzle
 ; ==========================================================
+; Path /boot/include/boot.inc
+; The constant definition of boot.
 
 
 ; ==========================================================
