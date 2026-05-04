@@ -9,6 +9,10 @@
 BITS 32
 ORG 0x00100000
 
-start:
+GLOBAL _start
+
+SECTION .entry
+
+_start:
     hlt
     jmp $   ; Sleep

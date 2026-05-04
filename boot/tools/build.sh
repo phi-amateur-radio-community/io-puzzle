@@ -11,14 +11,14 @@ if [ ! -f "disk.img" ]; then
 fi
 
 # Build kernel
-nasm -f bin "${CURRENT_DIR}/src/kernel/kernel.asm" -o kernel.bin -I "${CURRENT_DIR}/include/"
+nasm -f bin "${CURRENT_DIR}/src/kernel/kernel.asm" -o kernel.bin -I "${CURRENT_DIR}/include/" -I "${BINARY_DIR}/include/"
 
 # Calculate kernel size
 kernel_size=$(stat -c%s kernel.bin)
 kernel_sectors=$(( (kernel_size + 511) / 512))
 
 # Build MBR
-nasm -f bin "${CURRENT_DIR}/src/boot.asm" -DKERNEL_SIZE=${kernel_sectors} -o boot.bin -I "${CURRENT_DIR}/include/"
+nasm -f bin "${CURRENT_DIR}/src/boot.asm" -DKERNEL_SIZE=${kernel_sectors} -o boot.bin -I "${CURRENT_DIR}/include/" -I "${BINARY_DIR}/include/"
 
 # Copy MBR to disk
 dd if=boot.bin of=disk.img bs=512 conv=notrunc
