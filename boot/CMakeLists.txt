@@ -1,7 +1,6 @@
 add_custom_command(
         OUTPUT
             boot.bin
-            include/boot.inc
             kernel.bin
             disk.img
         COMMAND
@@ -13,7 +12,6 @@ add_custom_command(
         DEPENDS
             ${CMAKE_CURRENT_SOURCE_DIR}/src/boot.asm
             ${CMAKE_CURRENT_SOURCE_DIR}/src/kernel/kernel.asm
-            ${CMAKE_CURRENT_SOURCE_DIR}/include/boot.in.inc
             ${CMAKE_CURRENT_SOURCE_DIR}/tools/run.sh
 )
 
