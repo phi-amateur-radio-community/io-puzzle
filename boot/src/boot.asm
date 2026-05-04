@@ -9,8 +9,6 @@
 BITS 16
 ORG BOOT_ORG
 
-GLOBAL _start
-
 start:
     cli                         ; Close the BIOS interrupts
 
@@ -53,15 +51,15 @@ load_kernel:
     mov  dx, PIO_DEVICE
     out  dx, al                 ; Set device number
 
-test_status:                    ; Check whenever the device is busy
+.test_status:                   ; Check whenever the device is busy
     mov  dx, PIO_STATUS_COM
     in   al, dx                 ; Read status from IO port
     test al, PIO_DRDY           ; Check DRDY ( drive ready )
-    jz   drive_err              ; Jump to drive error
+    jz   .drive_err             ; Jump to drive error
     test al, PIO_BSY            ; Check BSY ( busy )
-    jnz  test_status            ; Repeat the program if BSY not equal 0
+    jnz  .test_status           ; Repeat the program if BSY not equal 0
 
-read_set:
+.read_set:
     mov  al, KERNEL_SIZE        ; Set sectors number of kernel
     mov  dx, PIO_SECTOR_NUM
     out  dx, al
@@ -77,7 +75,7 @@ read_set:
     mov  dx, PIO_LBA_HIG        ; Set the high of LBA
     out  dx, al
 
-read_disk:
+.read_disk:
     mov  al, PIO_READ_COM       ; Send read command
     mov  dx, PIO_STATUS_COM
     out  dx, al
@@ -95,23 +93,23 @@ read_disk:
     in   al, dx
     in   al, dx
 
-wait_drq:                       ; Check whenever the data is ready
+.wait_drq:                      ; Check whenever the data is ready
     mov  dx, PIO_STATUS_COM
     in   al, dx
     test al, PIO_BSY            ; Check BSY
-    jnz  wait_drq
+    jnz  .wait_drq
 
     test al, PIO_DRQ            ; Check DRQ
-    jz   wait_drq
+    jz   .wait_drq
 
-read_sector:
+.read_sector:
     mov  ecx, 0x00000100        ; Set simply sector length
     mov  edx, PIO_DATA          ; Connect the output port
 
     rep  insw                   ; Read to the memory from disk
 
     dec  ebx                    ; Reduce the sector counter
-    jnz  wait_drq               ; Repeat to wait and read
+    jnz  .wait_drq              ; Repeat to wait and read
 
 
 ; ======================================================================
@@ -121,7 +119,7 @@ read_sector:
     jmp  0x08:BOOT_KERNEL_POS   ; Jump to the kernel
 
 
-drive_err:
+.drive_err:
     jmp  $                      ; Sleep
 
 
