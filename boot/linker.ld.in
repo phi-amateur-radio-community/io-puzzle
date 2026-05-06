@@ -10,10 +10,10 @@ SECTIONS
     .text : {
         *(.entry)
         *(.text)
-    }
+    } :text
 
-    .rodata : { *(.rodata) }
-    .data : { *(.data) }
+    .rodata : { *(.rodata) } : text
+    .data : { *(.data) } : data
 
     .bss : {
         *(COMMON)
@@ -23,5 +23,10 @@ SECTIONS
         _stack_bottom = .;
         . += @KERNEL_STACK_SIZE@;
         _stack_top = .;
-    }
+    } : data
+}
+
+PHDRS {
+    text PT_LOAD FLAGS(5);
+    data PT_LOAD FLAGS(6);
 }
