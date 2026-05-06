@@ -7,12 +7,16 @@
 ; The entry of kernel.
 
 BITS 32
-ORG 0x00100000
 
 GLOBAL _start
+
+EXTERN kernel_main
+EXTERN _stack_top
 
 SECTION .entry
 
 _start:
+    mov esp, _stack_top
+    mov ebp, esp
+    call kernel_main
     hlt
-    jmp $   ; Sleep

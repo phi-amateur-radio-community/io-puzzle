@@ -10,8 +10,8 @@ if [ ! -f "disk.img" ]; then
   bximage -q -hd="${IMG_SIZE}" -func=create -sectsize=512 -imgmode=flat disk.img
 fi
 
-# Build kernel
-nasm -f bin "${CURRENT_DIR}/src/kernel/kernel.asm" -o kernel.bin -I "${CURRENT_DIR}/include/" -I "${BINARY_DIR}/include/"
+# Make binary of kernel from ELF
+objcopy -O binary kernel.elf kernel.bin
 
 # Calculate kernel size
 kernel_size=$(stat -c%s kernel.bin)
