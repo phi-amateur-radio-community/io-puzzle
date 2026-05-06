@@ -25,3 +25,9 @@ if (NOT DD_EXECUTABLE)
             "3) Check boot/CMakeLists.txt for dd usage and replace it manually or via automation\n"
             "   (you may submit a PR to properly support a fallback implementation)")
 endif ()
+
+if(NOT DEFINED BOCHS_SHARE_PATH)
+    set(BOCH_SHARE_PATH "/usr/share/bochs")
+    message("Warning: You didn't set the share path of bochs, used default path.
+            And you can used CMakeUserPresets.json to set it.")
+endif ()

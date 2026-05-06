@@ -17,12 +17,6 @@ add_custom_command(
 
 add_custom_target(Boot ALL DEPENDS disk.img)
 
-if(NOT DEFINED BOCHS_SHARE_PATH)
-    set(BOCH_SHARE_PATH "/usr/share/bochs")
-    message("Warning: You didn't set the share path of bochs, used default path.
-            And you can used CMakeUserPresets.json to set it.")
-endif ()
-
 configure_file(linker.ld.in ${CMAKE_BINARY_DIR}/linker.ld @ONLY)
 configure_file(include/boot.inc.in ${CMAKE_BINARY_DIR}/include/boot.inc @ONLY)
 configure_file(tools/bochsrc.in ${CMAKE_BINARY_DIR}/bochsrc @ONLY)
